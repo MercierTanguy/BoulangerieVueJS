@@ -32,6 +32,7 @@
             </div>
         </form>
         <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+        <div v-if="successMessage" class="success-message">{{ successMessage }}</div>
     </div>
 </template>
 
@@ -50,7 +51,8 @@ export default {
                 login: '',
                 password: ''
             },
-            errorMessage: ''
+            errorMessage: '',
+            successMessage: ''
         };
     },
     methods: {
@@ -59,6 +61,7 @@ export default {
                 const response = await axios.post('http://localhost:3000/login', this.user);
                 console.log(response.data);
                 localStorage.setItem('sessionId', response.data.sessionId);
+                this.successMessage = 'Connexion réussie !'; // Afficher le message de succès
             } catch (error) {
                 console.error('Erreur durant le login', error);
                 this.errorMessage = 'Nom utilisateur ou mot de passe incorrect.';
@@ -68,9 +71,10 @@ export default {
             try {
                 const response = await axios.post('http://localhost:3000/register', this.newUser);
                 console.log(response.data);
+                this.successMessage = 'Inscription réussie !'; // Afficher le message de succès
             } catch (error) {
                 console.error('Erreur durant l inscription', error);
-                this.errorMessage = 'Non d\'utilisateur déjà utilisé';
+                this.errorMessage = 'Nom d\'utilisateur déjà utilisé';
             }
         }
     }
@@ -114,6 +118,11 @@ export default {
 
 .error-message {
     color: red;
+    margin-top: 10px;
+}
+
+.success-message {
+    color: green;
     margin-top: 10px;
 }
 </style>
