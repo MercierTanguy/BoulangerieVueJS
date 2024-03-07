@@ -1,24 +1,27 @@
 <template>
-    
-      <h1>Liste de Produits</h1>
-      <div v-for="image in images" :key="image.id" class="produit-card">
-      <!-- <img :src=""> -->
-      <p>Nom du Produit: {{ image.name }}</p>
-      <p>Description: {{ image.description }}</p>
+  <div>
+    <h1>Liste de Produits</h1>
+    <div v-for="product in products" :key="product.id" class="produit-card">
+      <p>Nom du Produit: {{ product.nom }}</p>
+      <p>Prix: {{ product.prix }} €</p>
     </div>
-    
-  </template>
+  </div>
+</template>
 
-<script>
-import imagesData from '../assets/produits/produits.json'; 
+<script setup>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 
-export default {
-  data() {
-    return {
-      images: imagesData.images
-    };
-  },
-};
+const products = ref([]);
+
+onMounted(async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/produits');
+    products.value = response.data;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des produits', error);
+  }
+});
 </script>
 
 <style scoped>

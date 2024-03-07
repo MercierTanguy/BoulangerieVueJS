@@ -1,17 +1,18 @@
 <template>
     <footer class="app-footer">
-        <p>Company © BoulangerieDuMusée All rights reserved.</p>
+      <p>mention légale :</p>
+      <p>Company © BoulangerieDuMusée All rights reserved.</p>
     </footer>
-    
-
-</template>
-
-<script setup>
-
-</script>
-
-<style scoped lang="scss">
-
-
-
-</style>
+  </template>
+  
+  <style scoped lang="scss">
+  .app-footer {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  </style>
+  

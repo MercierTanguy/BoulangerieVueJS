@@ -9,9 +9,9 @@ import Login from './pages/LoginPage.vue'
 
 const routes = [
     { path: '/', component: HomePage, name: 'landing-page', alias: '/landing'},
-    { path: '/Produits', component: Produits},
-    { path: '/Commander', component: Commander},
-    { path: '/Login', component: Login }
+    { path: '/produits', component: Produits},
+    { path: '/commander', component: Commander},
+    { path: '/login', component: Login }
 ]
 
 const router = createRouter({
